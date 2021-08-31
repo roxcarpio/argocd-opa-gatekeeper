@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-2
+  namespace: argocd
+spec:
+  destination:
+    namespace: cluster-apps
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: my-greeter
+    repoURL: https://pietromcp.gitlab.io/my-chart-repository
+    targetRevision: 0.1.1
