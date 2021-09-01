@@ -10,8 +10,3 @@ spec:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-    namespaces:
-      - "default"
-  parameters:
-    repos:
-      - "quay.io/roxcarpio"
