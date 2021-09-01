@@ -1,10 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sAllowedRepos
+kind: K8sTrustedImages
 metadata:
-  name: repo-is-openpolicyagent
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: pod-trusted-images
 spec:
   match:
     kinds:

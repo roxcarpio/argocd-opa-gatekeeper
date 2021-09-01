@@ -1,30 +1,16 @@
 apiVersion: templates.gatekeeper.sh/v1beta1
 kind: ConstraintTemplate
 metadata:
-  name: k8sallowedrepos
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
-    description: Requires container images to begin with a repo string from a specified
-      list.
+  name: k8strustedimages
 spec:
   crd:
     spec:
       names:
-        kind: K8sAllowedRepos
-      validation:
-        # Schema for the `parameters` field
-        openAPIV3Schema:
-          type: object
-          properties:
-            repos:
-              type: array
-              items:
-                type: string
+        kind: K8sTrustedImages
   targets:
     - target: admission.k8s.gatekeeper.sh
       rego: |
-        package k8sallowedrepos
-
+        package k8strustedimages
         violation[{"msg": msg}] {
           image := input.review.object.spec.containers[_].image
           not startswith(image, "docker.io/")
