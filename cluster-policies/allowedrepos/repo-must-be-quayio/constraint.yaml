@@ -1,7 +1,8 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sTrustedImages
+kind: K8sAllowedRepos
 metadata:
-  name: pod-trusted-images
+  name: repo-is-openpolicyagent
+  namespace: kube-policies
   annotations:
     argocd.argoproj.io/sync-wave: "1"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
@@ -10,3 +11,9 @@ spec:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+    namespaces:
+      - "default"
+  parameters:
+    repos:
+      - "docker.io/"
+      - "quay.io/roxcarpio"

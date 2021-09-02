@@ -1,20 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-policies
+  name: gatekeeper
   namespace: argocd
 spec:
   destination:
-    namespace: default
+    namespace: gatekeeper-system
     server: https://kubernetes.default.svc
   project: default
   source:
-    directory:
-      jsonnet: {}
-      recurse: true
-    path: cluster-policies
-    repoURL: https://github.com/roxcarpio/argocd-opa-gatekeeper.git
-    targetRevision: master
+    chart: gatekeeper
+    repoURL: https://open-policy-agent.github.io/gatekeeper/charts
+    targetRevision: 3.6.0
   syncPolicy:
     automated:
       prune: true

@@ -2,6 +2,7 @@ apiVersion: templates.gatekeeper.sh/v1beta1
 kind: ConstraintTemplate
 metadata:
   name: k8srequiredlabels
+  namespace: kube-policies
   annotations:
     argocd.argoproj.io/sync-wave: "0"
     description: Requires all resources to contain a specified label with a value matching a provided regular expression.

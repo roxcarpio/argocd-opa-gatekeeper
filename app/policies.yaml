@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-policies
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-policies
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: cluster-policies
+    repoURL: https://github.com/roxcarpio/argocd-opa-gatekeeper.git
+    targetRevision: master
+    directory:
+      recurse: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true

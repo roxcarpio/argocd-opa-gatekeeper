@@ -1,0 +1,1 @@
+argocd app create cluster-apps --repo https://github.com/roxcarpio/argocd-opa-gatekeeper.git --path app --dest-namespace cluster-apps --dest-server https://kubernetes.default.svc
